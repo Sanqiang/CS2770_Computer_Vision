@@ -1,0 +1,12 @@
+net: "/afs/cs.pitt.edu/usr0/zhaosanqiang/private/cs_2770_assign1/models_adam/train_val.prototxt" # FULL PATH TO YOUR TRAIN_VAL.PROTOTXT FILE
+base_lr: 0.0001 # SET LEARNING RATE HERE
+lr_policy: "step"
+gamma: 0.1 # THE AMOUNT BY WHICH THE LEARNING RATE DECREASES
+stepsize: 5000 # SET THIS TO NUMBER OF ITERATIONS IN TEN EPOCHS
+display: 100
+max_iter: 999999
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 5000 # NUMBER OF ITERATIONS IN AN EPOCH
+snapshot_prefix: "/afs/cs.pitt.edu/usr0/zhaosanqiang/private/cs_2770_assign1/snapshot_adam/" # THE FULL PATH TO THE DIRECTORY YOU WISH TO SAVE YOUR TRAINED MODELS
+solver_mode: GPU
