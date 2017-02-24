@@ -7,7 +7,7 @@ import numpy as np
 from scipy.spatial.distance import euclidean
 from scipy.ndimage import gaussian_filter
 
-def extract_keypoints(img_path, window_size = 5, thresh=-1, k=0.05):
+def extract_keypoints(img_path, window_size = 11, thresh=-1, k=0.05):
     im = imread(img_path, flatten=True)
     # im = imresize(im, (200, 200))
     dy, dx = np.gradient(im)
@@ -17,7 +17,7 @@ def extract_keypoints(img_path, window_size = 5, thresh=-1, k=0.05):
     height = im.shape[0]
     width = im.shape[1]
 
-    cornerList = []
+    outputs = []
     offset = int(window_size / 2)
     for y in range(offset, height-offset):
         for x in range(offset, width-offset):
@@ -32,31 +32,37 @@ def extract_keypoints(img_path, window_size = 5, thresh=-1, k=0.05):
             trace = Sxx + Syy
             r = det - k*(trace**2)
 
-            if r > thresh and thresh != -1:
-                cornerList.append([x, y, r])
-                im[y, x] = 0
-                im[y - 1, x - 1] = 0
-                im[y + 1, x - 1] = 0
-                im[y - 1, x + 1] = 0
-                im[y + 1, x + 1] = 0
-            elif thresh == -1:
-                cornerList.append([x, y, r])
+            outputs.append([x, y, r, dx[y, x], dy[y, x]])
 
-    if thresh == -1:
-        cornerList = sorted(cornerList, reverse=True, key=lambda x:x[2])
-        for i in range(1000):
-            corner = cornerList[i]
+    return outputs
+
+def find_corner(img_path, outpusts, oimg_path, thres = -1, cornner_cnt = 10000):
+    im = imread(img_path, flatten=True)
+    if thres == -1:
+        outpusts = sorted(outpusts, reverse=True, key=lambda x: x[2])
+        for i in range(cornner_cnt):
+            corner = outpusts[i]
             x, y, r = corner[0], corner[1], corner[2]
             im[y, x] = 0
             im[y - 1, x - 1] = 0
             im[y + 1, x - 1] = 0
             im[y - 1, x + 1] = 0
             im[y + 1, x + 1] = 0
+    else:
+        for output in outpusts:
+            x, y, r = output[0], output[1], output[2]
+            if r > thres:
+                im[y, x] = 0
+                im[y - 1, x - 1] = 0
+                im[y + 1, x - 1] = 0
+                im[y - 1, x + 1] = 0
+                im[y + 1, x + 1] = 0
+    imsave(oimg_path, im)
 
 
-    imsave("xxx.jpg", im)
 
 
 if __name__ == '__main__':
     path = "metal.jpg"
-    extract_keypoints(path)
+    outputs = extract_keypoints(path)
+    find_corner(path, outputs, "xxx.jpg")
