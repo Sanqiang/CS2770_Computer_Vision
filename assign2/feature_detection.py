@@ -7,62 +7,82 @@ import numpy as np
 from scipy.spatial.distance import euclidean
 from scipy.ndimage import gaussian_filter
 
-def extract_keypoints(img_path, window_size = 11, thresh=-1, k=0.05):
+def extract_keypoints(img_path, window_size = 11, k=0.05):
     im = imread(img_path, flatten=True)
-    # im = imresize(im, (200, 200))
-    dy, dx = np.gradient(im)
-    Ixx = dx ** 2
-    Ixy = dy * dx
-    Iyy = dy ** 2
     height = im.shape[0]
     width = im.shape[1]
+    # im = imresize(im, (200, 200))
+    dy, dx = np.gradient(im)
+    i_x = dx ** 2
+    i_xy = dy * dx
+    i_y = dy ** 2
 
-    outputs = []
+    xs = []
+    ys = []
+    rs = []
+    dxs = []
+    dys = []
     offset = int(window_size / 2)
     for y in range(offset, height-offset):
         for x in range(offset, width-offset):
-            windowIxx = Ixx[y - offset:y + offset + 1, x - offset:x + offset + 1]
-            windowIxy = Ixy[y - offset:y + offset + 1, x - offset:x + offset + 1]
-            windowIyy = Iyy[y - offset:y + offset + 1, x - offset:x + offset + 1]
-            Sxx = windowIxx.sum()
-            Sxy = windowIxy.sum()
-            Syy = windowIyy.sum()
+            ixx = i_x[y - offset:y + offset + 1, x - offset:x + offset + 1]
+            ixy = i_xy[y - offset:y + offset + 1, x - offset:x + offset + 1]
+            iyy = i_y[y - offset:y + offset + 1, x - offset:x + offset + 1]
+            sxx = ixx.sum()
+            sxy = ixy.sum()
+            syy = iyy.sum()
 
-            det = (Sxx * Syy) - (Sxy**2)
-            trace = Sxx + Syy
+            det = (sxx * syy) - (sxy**2)
+            trace = sxx + syy
             r = det - k*(trace**2)
 
-            outputs.append([x, y, r, dx[y, x], dy[y, x]])
+            xs.append(x)
+            ys.append(y)
+            rs.append(r)
+            dxs.append(dx[y, x])
+            dys.append(dy[y, x])
 
-    return outputs
+    output = (xs, ys, rs, dxs, dys)
+    return output
 
-def find_corner(img_path, outpusts, oimg_path, thres = -1, cornner_cnt = 10000):
+def find_corner(img_path, output, oimg_path, thres = -1, cornner_cnt = 10000):
     im = imread(img_path, flatten=True)
+    im_origin = imread(img_path, flatten=False)
     if thres == -1:
-        outpusts = sorted(outpusts, reverse=True, key=lambda x: x[2])
+        s_idxs = sorted(range(len(output[2])), key=lambda k: output[2][k], reverse=True)
         for i in range(cornner_cnt):
-            corner = outpusts[i]
-            x, y, r = corner[0], corner[1], corner[2]
+            x, y, r = output[0][s_idxs[i]], output[1][s_idxs[i]], output[2][s_idxs[i]]
             im[y, x] = 0
             im[y - 1, x - 1] = 0
             im[y + 1, x - 1] = 0
             im[y - 1, x + 1] = 0
             im[y + 1, x + 1] = 0
     else:
-        for output in outpusts:
-            x, y, r = output[0], output[1], output[2]
+        for i in range(len(output[0])):
+            x, y, r = output[0][i], output[1][i], output[2][i]
             if r > thres:
                 im[y, x] = 0
                 im[y - 1, x - 1] = 0
                 im[y + 1, x - 1] = 0
                 im[y - 1, x + 1] = 0
                 im[y + 1, x + 1] = 0
-    imsave(oimg_path, im)
+    # imsave(oimg_path, im)
+    f, (ax0, ax1) = plt.subplots(1, 2)
+    ax0.imshow(im_origin)
+    ax1.imshow(im, cmap=plt.cm.Greys_r)
+
+    plt.savefig(oimg_path)
+    plt.close()
 
 
-
+def process(input_folder="img3", output_folder="img3_result"):
+    for file in listdir(input_folder):
+        if file[:3] == "img":
+            input_path = "".join([input_folder, "/", file])
+            output = extract_keypoints(input_path)
+            output_path = "".join([output_folder, "/", file])
+            find_corner(input_path, output, output_path)
 
 if __name__ == '__main__':
-    path = "metal.jpg"
-    outputs = extract_keypoints(path)
-    find_corner(path, outputs, "xxx.jpg")
+    process()
+

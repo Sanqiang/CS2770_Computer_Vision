@@ -16,47 +16,51 @@ def preprocess(folder = "img"):
 
             # scipy implementation
             im = imread(origin_path, flatten=True)
-            im = imresize(im, (200, 200))
+            im = imresize(im, (100, 100))
             imsave(target_path, im)
 
             # PIL implementation
             # im = Image.open(origin_path).convert('L')
-            # im = im.resize((200, 200))
+            # im = im.resize((100, 100))
             # im.save(target_path)
 
 def filter_img(folder = "img_processed", num_filter = 48):
-    mat = loadmat("img/filters.mat")
+    mat = loadmat("filters.mat")
     for file in listdir(folder):
         if file[-3:] == "jpg":
             origin_path = "".join([folder, "/", file])
-            im = imread(origin_path, flatten=False)
+            im = imread(origin_path)
+            im_origin = imread("".join(["img", "/", file]))
 
             for i in range(num_filter):
-                filter = mat['F'][i]
-                c_im = convolve(im, filter, mode="constant", cval=0)
+                filter = mat['F'][:, :, i]
+                c_im = np.ndarray((im.shape))
+                convolve(im, filter, c_im)
 
                 f, (ax0, ax1, ax2) = plt.subplots(1, 3)
-                ax0.imshow(im, cmap = plt.cm.Greys_r)
-                ax1.imshow(filter, cmap = plt.cm.Greys_r)
-                ax2.imshow(c_im, cmap = plt.cm.Greys_r)
+                ax0.imshow(im_origin)
+                ax1.imshow(filter)
+                ax2.imshow(c_im, cmap=plt.cm.Greys_r)
 
                 plt.savefig("".join(["img_filter/", file, "_", str(i), ".jpg"]))
                 plt.close()
 
-def dist(folder = "img_processed", num_filter = 48, use_mean = False):
-    mat = loadmat("img/filters.mat")
+                # break
+
+def calculate_dist(folder = "img_processed", num_filter = 48, use_mean = False, use_norm = False):
+    mat = loadmat("filters.mat")
     data = {}
     for file in listdir(folder):
         if file[-3:] == "jpg":
-            data[file] = np.ndarray((200,200,48), dtype=np.float)
+            data[file] = np.ndarray((100,100,48), dtype=np.float)
             origin_path = "".join([folder, "/", file])
-            im = imread(origin_path, flatten=False)
+            im = imread(origin_path)
 
             for i in range(num_filter):
-                filter = mat['F'][i]
+                filter = mat['F'][:, :, i]
+                c_im = np.ndarray((im.shape))
+                convolve(im, filter, c_im)
                 c_im = convolve(im, filter, mode="constant", cval=0)
-                if use_mean:
-                    c_im = np.mean(c_im.flatten())
 
                 data[file][:,:,i] = c_im
 
@@ -65,15 +69,37 @@ def dist(folder = "img_processed", num_filter = 48, use_mean = False):
     for file in data:
         for file2 in data:
             if file[:4] == file2[:4] and file != file2:
-                dists_inclass.append(euclidean(data[file].flatten(), data[file2].flatten()))
-    print("mean of inclass dist", np.mean(dists_inclass))
+                data1 = data[file].flatten()
+                data2 = data[file2].flatten()
+                if use_norm:
+                    data1 /= np.sum(data1)
+                    data2 /= np.sum(data2)
+                if use_mean:
+                    dist = euclidean(np.mean(data1), np.mean(data2))
+                else:
+                    dist = euclidean(data1, data2)
+                    dist /= len(data1)
+                dist = np.mean(dist)
+                dists_inclass.append(dist)
+    print("mean of distance between same class", np.mean(dists_inclass))
 
     dists_outclass = []
     for file in data:
         for file2 in data:
             if file[:4] != file2[:4]:
-                dists_outclass.append(euclidean(data[file].flatten(), data[file2].flatten()))
-    print("mean of outclass dist", np.mean(dists_outclass))
+                data1 = data[file].flatten()
+                data2 = data[file2].flatten()
+                if use_norm:
+                    data1 /= np.sum(data1)
+                    data2 /= np.sum(data2)
+                if use_mean:
+                    dist = euclidean(np.mean(data1), np.mean(data2))
+                else:
+                    dist = euclidean(data1, data2)
+                    dist /= len(data1)
+                dist = np.mean(dist)
+                dists_outclass.append(dist)
+    print("mean of distance between different classes", np.mean(dists_outclass))
 
 
 
@@ -81,5 +107,7 @@ def dist(folder = "img_processed", num_filter = 48, use_mean = False):
 if __name__ == '__main__':
     # preprocess()
     # filter_img()
-    dist(use_mean=False)
-    dist(use_mean=True)
+    calculate_dist(use_mean=False, use_norm=False)
+    calculate_dist(use_mean=True, use_norm=False)
+    # calculate_dist(use_mean=False, use_norm=True)
+    # calculate_dist(use_mean=True, use_norm=True)

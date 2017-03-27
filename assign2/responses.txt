@@ -1,0 +1,10 @@
+Result for question 6
+mean of distance between same class 0.220825635062
+mean of distance between different classes 0.224431082999
+
+Result for question 7
+mean of distance between same class 0.898946527778
+mean of distance between different classes 4.13123680556
+
+Both strategy tell us distance between same class is smaller than distance between different classes. However, the result for question 7 is more clear.
+For me, it is hard to see which one is better. Taking mean response of all pixels will lose the position information, which is not preferred. But directly compare pixel by pixel from two images also suffers two images may have different intensity scales but similar contour. So I would prefer normalize two images and then compare pixel by pixel.
