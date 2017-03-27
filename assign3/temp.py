@@ -31,7 +31,7 @@ for label in labels:
 #split into train / test
 data_len = len(y)
 rd_idxs = rd.sample(range(data_len), data_len)
-split = round(0.8 * len(rd_idxs))
+split = round(0.9 * len(rd_idxs))
 train_idx = rd_idxs[:split]
 test_idx = rd_idxs[split:]
 x = np.array(x)
@@ -46,9 +46,9 @@ descriptors = []
 for image_path in train_x:
     img = imread(image_path, flatten=True)
     # img = imresize(img, (200, 200))
-    result = sift(img, compute_descriptor=True, n_levels=2)
+    result = sift(img, compute_descriptor=True)
     [descriptors.append(l) for l in result[1]]
-kmeans = KMeans(n_clusters=K, random_state=0).fit(descriptors)
+kmeans = KMeans(n_clusters=K, max_iter=3000, n_jobs=-2).fit(descriptors)
 
 # caculate features
 train_x_features = []
@@ -56,7 +56,7 @@ test_x_features = []
 for image_path in train_x:
     img = imread(image_path, flatten=True)
     # img = imresize(img, (200, 200))
-    result = sift(img, compute_descriptor=True, n_levels=2)
+    result = sift(img, compute_descriptor=True)
     features = kmeans.predict(result[1])
     features_hist = [0] * K
     for k in features:
@@ -65,7 +65,7 @@ for image_path in train_x:
 for image_path in test_x:
     img = imread(image_path, flatten=True)
     # img = imresize(img, (200, 200))
-    result = sift(img, compute_descriptor=True, n_levels=2)
+    result = sift(img, compute_descriptor=True)
     features_hist = [0] * K
     for k in features:
         features_hist[k] += 1
