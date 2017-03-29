@@ -21,13 +21,13 @@ def computeSPMHistogram(im, means):
         y=frame[0]
         x=frame[1]
         if y < im.shape[0]/2 and x < im.shape[1]/2:
-            pyramid[K] += 1
+            pyramid[K + k] += 1
         elif y < im.shape[0]/2 and x >= im.shape[1]/2:
-            pyramid[2 * K] += 1
+            pyramid[2 * K + k] += 1
         elif y >= im.shape[0]/2 and x < im.shape[1]/2:
-            pyramid[3 * K] += 1
+            pyramid[3 * K + k] += 1
         elif y >= im.shape[0]/2 and x >= im.shape[1]/2:
-            pyramid[4 * K] += 1
+            pyramid[4 * K + k] += 1
 
     return pyramid
 
