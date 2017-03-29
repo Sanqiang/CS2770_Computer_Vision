@@ -1,0 +1,22 @@
+I calculate the error and generate correponding image regarding to k equals from 1 to 14.
+The image is named as fish1.jpg, fish2.jpg, fish3.jpg .... fish15.jpg.
+And following lists error for different k.
+
+41426.796688277216
+31918.9587801534
+26856.30462323593
+23743.954460556015
+21500.43239527721
+19629.375928780642
+18605.40184219362
+17617.94044079938
+16842.357425469843
+16199.20233043216
+15591.17234251903
+15077.634472789385
+14648.895946748044
+14216.55522041165
+
+
+Based on the result, it is obvious that the error decrease and output image turns to clear as increasing k.
+The reason is as k increase, the output image turns to more close to original image due to more variance of the output image (think of k = 1, it is nothing but mean of all pixels and when k = 2, it is mean of two most variant pixels and so on).
