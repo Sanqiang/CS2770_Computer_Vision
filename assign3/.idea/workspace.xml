@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/assign3$temp.coverage" NAME="temp Coverage Results" MODIFIED="1490658272850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/assign3$temp.coverage" NAME="temp Coverage Results" MODIFIED="1490761155635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/assign3$matplotlib_utils.coverage" NAME="matplotlib_utils Coverage Results" MODIFIED="1490732617785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/assign3$Edge_detection_and_circle_detection.coverage" NAME="Edge_detection_and_circle_detection Coverage Results" MODIFIED="1490749066134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/assign3$Color_quantization_with_K_means.coverage" NAME="Color_quantization_with_K-means Coverage Results" MODIFIED="1490732058454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -28,57 +28,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Edge_detection_and_circle_detection.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Edge_detection_and_circle_detection.py">
+      <file leaf-file-name="Spatial_Pyramid_Match.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Spatial_Pyramid_Match.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+            <state relative-caret-position="420">
+              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jupiter_r_33_33.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/part2/jupiter_r_33_33.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="egg_line.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/egg_line.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jupiter_r_36_36.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/part2/jupiter_r_36_36.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="egg_r_3_5.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/part2/egg_r_3_5.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="egg_r_4_4.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/part2/egg_r_4_4.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="egg_r_5_5.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/part2/egg_r_5_5.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="sift.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/envs/dl_py35/lib/python3.5/site-packages/cyvlfeat/sift/sift.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -95,10 +63,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/temp.py" />
-        <option value="$PROJECT_DIR$/Spatial_Pyramid_Match.py" />
         <option value="$PROJECT_DIR$/Color_quantization_with_K-means.py" />
         <option value="$PROJECT_DIR$/matplotlib_utils.py" />
         <option value="$PROJECT_DIR$/Edge_detection_and_circle_detection.py" />
+        <option value="$PROJECT_DIR$/Spatial_Pyramid_Match.py" />
       </list>
     </option>
   </component>
@@ -200,7 +168,7 @@
       <recent name="$PROJECT_DIR$/part22" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Edge_detection_and_circle_detection">
+  <component name="RunManager" selected="Python.temp">
     <configuration default="false" name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -508,11 +476,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Edge_detection_and_circle_detection" />
-        <item index="1" class="java.lang.String" itemvalue="Python.matplotlib_utils" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Color_quantization_with_K-means" />
-        <item index="3" class="java.lang.String" itemvalue="Python.temp (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.temp" />
+        <item index="0" class="java.lang.String" itemvalue="Python.temp" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Edge_detection_and_circle_detection" />
+        <item index="2" class="java.lang.String" itemvalue="Python.matplotlib_utils" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Color_quantization_with_K-means" />
+        <item index="4" class="java.lang.String" itemvalue="Python.temp (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -539,7 +507,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="23" width="1392" height="877" extended-state="6" />
+    <frame x="48" y="23" width="1392" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24856322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -575,45 +543,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Spatial_Pyramid_Match.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Spatial_Pyramid_Match.py</url>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="44" />
+      <option name="time" value="48" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="kmeans.labels_" language="Python" />
-        <watch expression="kmeans.cluster_centers_" language="Python" />
-        <watch expression="[kmeans.cluster_centers_[l] for l in kmeans.labels_]" language="Python" />
-        <watch expression="np.cos(orien)" language="Python" />
-        <watch expression="np.cos(orien)" language="Python" />
-        <watch expression="x" language="Python" />
-        <watch expression="r" language="Python" />
+        <watch expression="result" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fish10.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fish2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda/envs/dl_py35/lib/python3.5/site-packages/sklearn/cluster/k_means_.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -683,16 +624,6 @@
           <caret line="33" column="20" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="20" />
           <folding>
             <element signature="e#72#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spatial_Pyramid_Match.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="85" column="37" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -878,6 +809,32 @@
           <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/envs/dl_py35/lib/python3.5/site-packages/cyvlfeat/sift/sift.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/envs/dl_py35/lib/python3.5/pickle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="1575" column="4" selection-start-line="1575" selection-start-column="4" selection-end-line="1575" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spatial_Pyramid_Match.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>

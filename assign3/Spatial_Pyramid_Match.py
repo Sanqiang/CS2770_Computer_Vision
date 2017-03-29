@@ -6,6 +6,7 @@ import numpy as np
 from sklearn import svm
 import os
 import random as rd
+import pickle
 
 K = 100
 home = os.environ["HOME"]
@@ -13,9 +14,21 @@ home = os.environ["HOME"]
 def computeSPMHistogram(im, means):
     result = sift(im, compute_descriptor=True)
     features = means.predict(result[1])
-    pyramid = [0] * K
-    for k in features:
+    pyramid = [0] * K * 5
+    for frame, k in zip(result[0], features):
         pyramid[k] += 1
+
+        y=frame[0]
+        x=frame[1]
+        if y < im.shape[0]/2 and x < im.shape[1]/2:
+            pyramid[K] += 1
+        elif y < im.shape[0]/2 and x >= im.shape[1]/2:
+            pyramid[2 * K] += 1
+        elif y >= im.shape[0]/2 and x < im.shape[1]/2:
+            pyramid[3 * K] += 1
+        elif y >= im.shape[0]/2 and x >= im.shape[1]/2:
+            pyramid[4 * K] += 1
+
     return pyramid
 
 def SPMMain():
@@ -25,7 +38,7 @@ def SPMMain():
 
     base_path = "/".join([home, "data/scene_categories/"])
     labels = os.listdir(base_path)
-    # labels.remove(".DS_Store")  # for avoid mac file
+    labels.remove(".DS_Store")  # for avoid mac file
     label2idx = {}
     for label in labels:
         if label not in label2idx:
@@ -83,7 +96,15 @@ def SPMMain():
         # img = imresize(img, (200, 200))
         result = sift(img, compute_descriptor=True)
         [descriptors.append(l) for l in result[1]]
-    kmeans = KMeans(n_clusters=K, max_iter=10000, n_jobs=-1, n_init=50).fit(descriptors)
+
+
+    if not os.path.exists("pickle.model"):
+        kmeans = KMeans(n_clusters=K, max_iter=1000, n_jobs=-1, n_init=10).fit(descriptors)
+        with open("pickle.model", 'wb') as f:
+            pickle.dump(kmeans, f)
+    else:
+        with open("pickle.model", 'rb') as f:
+            kmeans = pickle.load(f)
     print("finished keams.")
 
     # caculate features
